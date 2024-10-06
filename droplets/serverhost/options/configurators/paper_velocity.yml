@@ -1,0 +1,16 @@
+paths:
+  - path: "server.properties"
+    type: "PROPERTIES"
+    data:
+      server-ip: "0.0.0.0"
+      server-port: %port%
+      max-players: %max-players%
+      online-mode: false
+  - path: "config/paper-global.yml"
+    type: "YML"
+    data:
+      proxies:
+        velocity:
+          enabled: "true"
+          online-mode: "true"
+          secret: "%forwarding-secret%"
