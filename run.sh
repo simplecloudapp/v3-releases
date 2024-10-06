@@ -35,7 +35,7 @@ serverhost_dir="$SCRIPT_DIR/droplets/serverhost"
 serverhost_running_servers_path="$SCRIPT_DIR/running"
 serverhost_template_path="$SCRIPT_DIR/templates"
 serverhost_launcher="$serverhost_dir/serverhost-runtime.jar"
-serverhost_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $serverhost_launcher --libs-path=\"$libs_dir\" --running-servers-path=\"$serverhost_running_servers_path\" --template-$
+serverhost_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $serverhost_launcher --libs-path=\"$libs_dir\" --running-servers-path=\"$serverhost_running_servers_path\" --template-path=\"$serverhost_template_path\" --auth-secret-path=\"$auth_secret_path\""
 
 # Start the controller if not already running
 start_screen_if_not_running "$controller_session" "$controller_dir" "$controller_cmd"
