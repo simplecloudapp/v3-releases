@@ -45,7 +45,7 @@ controller_session="simplecloud-controller"
 controller_dir="$SCRIPT_DIR/controller"
 controller_group_path="$SCRIPT_DIR/groups"
 controller_launcher="$controller_dir/controller-runtime.jar"
-controller_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $controller_launcher --database-url=\"$controller_database_url\" --grpc-host=\"$controller_host\" --grpc-port=\"$controller_grpc_port\" --pub-sub-grpc-port=\"$controller_pubsub_port" --group-path=\"$controller_group_path\" --auth-secret-path=\"$auth_secret_path\""
+controller_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $controller_launcher --database-url=\"$controller_database_url\" --grpc-host=\"$controller_host\" --grpc-port=\"$controller_grpc_port\" --pub-sub-grpc-port=\"$controller_pubsub_port\" --group-path=\"$controller_group_path\" --auth-secret-path=\"$auth_secret_path\""
 
 serverhost_session="simplecloud-serverhost"
 serverhost_dir="$SCRIPT_DIR/droplets/serverhost"
