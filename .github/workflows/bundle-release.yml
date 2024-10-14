@@ -25,7 +25,7 @@ jobs:
 
       - name: Process components and create bundle
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCOUNT_TOKEN }}
         run: |
           python .github/scripts/process_components.py
 
