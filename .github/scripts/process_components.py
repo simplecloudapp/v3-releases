@@ -24,7 +24,7 @@ def process_components():
         output = component['output']
         destination = component['destination']
 
-        api_url = f"{repo_url.replace('github.com', 'api.github.com/repos')}/releases/tags/v{version}"
+        api_url = f"{repo_url.replace('github.com', 'api.github.com/repos')}/releases/tags/{version}"
         response = requests.get(api_url, headers={'Authorization': f"token {os.environ['GITHUB_TOKEN']}"})
         response.raise_for_status()
         release_data = response.json()
