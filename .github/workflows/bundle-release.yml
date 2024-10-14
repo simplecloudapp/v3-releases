@@ -34,7 +34,9 @@ jobs:
         run: |
           YEAR=$(date +%Y)
           WEEK=$(date +%V)
-          RELEASE_IN_WEEK=$(git rev-list --count --since="last week" HEAD)
+          DAY_OF_WEEK=$(date +%u)
+          DAILY_COUNT=$(git rev-list --count --since="midnight" HEAD)
+          RELEASE_IN_WEEK=$((($DAY_OF_WEEK - 1) * 100 + $DAILY_COUNT))
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_IN_WEEK}"
           echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
           echo "TAG_NAME=v${RELEASE_NAME}" >> $GITHUB_OUTPUT
