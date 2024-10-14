@@ -1,0 +1,108 @@
+name: Bundle and Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  bundle-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyYAML requests
+
+      - name: Process components and create bundle
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCOUNT_TOKEN }}
+        run: |
+          python .github/scripts/process_components.py
+
+      - name: Get Commit Hash
+        id: commit_hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Generate release name and tag
+        id: release_info
+        run: |
+          echo "Starting release name and tag generation..."
+
+          YEAR=$(date +%Y)
+          echo "Current year: $YEAR"
+
+          WEEK=$(date +%V)
+          echo "Current week number: $WEEK"
+
+          # Get the short commit hash
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          echo "Commit hash: $COMMIT_HASH"
+
+          RELEASE_NAME="${YEAR}.${WEEK}.dev-${COMMIT_HASH}"
+          echo "Generated RELEASE_NAME: $RELEASE_NAME"
+
+          TAG_NAME="v${RELEASE_NAME}"
+          echo "Generated TAG_NAME: $TAG_NAME"
+
+          echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
+
+          echo "Release information set:"
+          echo "  RELEASE_NAME: $RELEASE_NAME"
+          echo "  TAG_NAME: $TAG_NAME"
+
+          echo "Release name and tag generation completed."
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.release_info.outputs.TAG_NAME }}
+          release_name: Release ${{ steps.release_info.outputs.RELEASE_NAME }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Bundle to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bundle.zip
+          asset_name: bundle.zip
+          asset_content_type: application/zip
+
+      - name: Upload Individual Files to Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Starting individual file uploads..."
+          for file in release_files/*; do
+            filename=$(basename "$file")
+            filesize=$(du -h "$file" | cut -f1)
+            echo "Uploading $filename (Size: $filesize)..."
+            
+            gh release upload "${{ steps.release_info.outputs.TAG_NAME }}" "$file" --clobber
+            
+            if [ $? -eq 0 ]; then
+              echo "Successfully uploaded $filename"
+            else
+              echo "Failed to upload $filename"
+              echo "Aborting further uploads."
+              exit 1
+            fi
+          done
+
+          echo "All individual file uploads completed successfully."

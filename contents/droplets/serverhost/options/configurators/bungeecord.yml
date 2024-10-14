@@ -1,0 +1,8 @@
+paths:
+  - path: "config.yml"
+    type: "YML"
+    data:
+      ip_forward: true
+      listeners:
+        - query_port: %port%
+          host: "0.0.0.0:%port%"

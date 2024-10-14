@@ -1,0 +1,17 @@
+connections:
+  - name: "lobby"
+    priority: 0
+    command-ref: "lobby"
+    try-on-login: true
+    server-name-matcher:
+      operation: "STARTS_WITH"
+      value: "lobby"
+
+commands:
+  - name: "lobby"
+    already-connected-message: "<red>You are already connected to the lobby!"
+    aliases:
+      - "l"
+      - "hub"
+      - "quit"
+      - "leave"

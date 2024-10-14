@@ -1,0 +1,13 @@
+paths:
+  - path: "server.properties"
+    type: "PROPERTIES"
+    data:
+      server-ip: "0.0.0.0"
+      server-port: %port%
+      max-players: %max-players%
+      online-mode: false
+  - path: "spigot.yml"
+    type: "YML"
+    data:
+      settings:
+        bungeecord: true

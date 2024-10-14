@@ -1,0 +1,11 @@
+paths:
+  - path: "velocity.toml"
+    type: "TOML"
+    data:
+      bind: "0.0.0.0:%port%"
+      show-max-players: %max-players%
+      forwarding-secret-file: "forwarding.secret"
+      player-info-forwarding-mode: "MODERN"
+  - path: "forwarding.secret"
+    type: "TXT"
+    data: "%forwarding-secret%"

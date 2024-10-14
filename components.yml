@@ -1,0 +1,16 @@
+- githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
+  version: v0.0.30-dev.bf5da83
+  files:
+    - releaseFile: controller-runtime.jar
+      output: controller-runtime.jar
+      destination: controller/
+    - releaseFile: controller-api.jar
+      output: controller-api.jar
+      destination: libs/
+- githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
+  version: v0.0.2-dev.73b285f
+  files:
+    - releaseFile: serverhost-runtime.jar
+      output: serverhost-runtime.jar
+      destination: droplets/serverhost
+# TODO: connection plugin, event wrapper plugin, registration plugin
