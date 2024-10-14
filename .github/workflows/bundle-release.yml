@@ -98,12 +98,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "Starting individual file uploads..."
           for file in release_files/*; do
             filename=$(basename "$file")
-            curl -X POST \
-                 -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: $(file -b --mime-type "$file")" \
-                 -H "Accept: application/vnd.github.v3+json" \
-                 --data-binary @"$file" \
-                 "${{ steps.create_release.outputs.upload_url }}?name=$filename"
-           done
+            filesize=$(du -h "$file" | cut -f1)
+            echo "Uploading $filename (Size: $filesize)..."
+            
+            gh release upload "${{ steps.release_info.outputs.TAG_NAME }}" "$file" --clobber
+            
+            if [ $? -eq 0 ]; then
+              echo "Successfully uploaded $filename"
+            else
+              echo "Failed to upload $filename"
+              echo "Aborting further uploads."
+              exit 1
+            fi
+          done
+
+          echo "All individual file uploads completed successfully."
