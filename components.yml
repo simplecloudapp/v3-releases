@@ -13,3 +13,4 @@
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
       destination: droplets/serverhost
+# TODO: connection plugin, event wrapper plugin, registration plugin
