@@ -32,14 +32,31 @@ jobs:
       - name: Generate release name and tag
         id: release_info
         run: |
+          echo "Starting release name and tag generation..."
+
           YEAR=$(date +%Y)
+          echo "Current year: $YEAR"
+
           WEEK=$(date +%V)
-          DAY_OF_WEEK=$(date +%u)
-          DAILY_COUNT=$(git rev-list --count --since="midnight" HEAD)
-          RELEASE_IN_WEEK=$((($DAY_OF_WEEK - 1) * 100 + $DAILY_COUNT))
+          echo "Current week number: $WEEK"
+
+          RELEASE_IN_WEEK=$(git rev-list --count --since="last week" HEAD)
+          echo "Commits since last week: $RELEASE_IN_WEEK"
+
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_IN_WEEK}"
+          echo "Generated RELEASE_NAME: $RELEASE_NAME"
+
+          TAG_NAME="v${RELEASE_NAME}"
+          echo "Generated TAG_NAME: $TAG_NAME"
+
           echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
-          echo "TAG_NAME=v${RELEASE_NAME}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
+
+          echo "Release information set:"
+          echo "  RELEASE_NAME: $RELEASE_NAME"
+          echo "  TAG_NAME: $TAG_NAME"
+
+          echo "Release name and tag generation completed."
 
       - name: Create Release
         id: create_release
