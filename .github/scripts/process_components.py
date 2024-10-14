@@ -53,6 +53,20 @@ def process_components():
         # Copy the file to release_files directory
         shutil.copy(output_path, os.path.join('release_files', output))
 
+    contents_dir = 'contents'
+    if os.path.exists(contents_dir):
+        print(f"Moving contents of '{contents_dir}' to bundle...")
+        for item in os.listdir(contents_dir):
+            s = os.path.join(contents_dir, item)
+            d = os.path.join('bundle', item)
+            if os.path.isdir(s):
+                shutil.copytree(s, d, dirs_exist_ok=True)
+            else:
+                shutil.copy2(s, d)
+        print(f"Contents of '{contents_dir}' moved to bundle successfully.")
+    else:
+        print(f"'{contents_dir}' folder not found in the repository.")
+
     # Create a zip file of the bundle
     shutil.make_archive('bundle', 'zip', 'bundle')
 
