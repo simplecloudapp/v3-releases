@@ -72,5 +72,5 @@ jobs:
                  -H "Accept: application/vnd.github.v3+json" \
                  --data-binary @"$file" \
                  "${{ steps.create_release.outputs.upload_url }}?name=$filename"
-          done
+           done
 
