@@ -29,14 +29,24 @@ jobs:
         run: |
           python .github/scripts/process_components.py
 
+      - name: Generate release name and tag
+        id: release_info
+        run: |
+          YEAR=$(date +%Y)
+          WEEK=$(date +%V)
+          RELEASE_IN_WEEK=$(git rev-list --count --since="last week" HEAD)
+          RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_IN_WEEK}"
+          echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=v${RELEASE_NAME}" >> $GITHUB_OUTPUT
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.release_info.outputs.TAG_NAME }}
+          release_name: Release ${{ steps.release_info.outputs.RELEASE_NAME }}
           draft: false
           prerelease: false
 
