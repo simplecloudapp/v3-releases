@@ -60,11 +60,17 @@ jobs:
           asset_name: bundle.zip
           asset_content_type: application/zip
 
-      - name: Upload Individual Files to Release
+            - name: Upload Individual Files to Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for file in release_files/*; do
-            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: $(file -b --mime-type $file)" \
-                 --data-binary @$file \
-                 "${{ steps.create_release.outputs.upload_url }}?name=$(basename $file)"
+            filename=$(basename "$file")
+            curl -X POST \
+                 -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                 -H "Content-Type: $(file -b --mime-type "$file")" \
+                 -H "Accept: application/vnd.github.v3+json" \
+                 --data-binary @"$file" \
+                 "${{ steps.create_release.outputs.upload_url }}?name=$filename"
           done
+
