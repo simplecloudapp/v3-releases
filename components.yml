@@ -13,4 +13,22 @@
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
       destination: droplets/serverhost
-# TODO: connection plugin, event wrapper plugin, registration plugin
+- githubRepo: https://github.com/theSimpleCloud/event-wrapper
+  version: v0.0.1-dev.950792a
+  files:
+    - releaseFile: event-wrapper-bungeecord.jar
+      output: event-wrapper.jar
+      destination: templates/every_bungeecord/plugins
+    - releaseFile: event-wrapper-velocity.jar
+      output: event-wrapper.jar
+      destination: templates/every_velocity/plugins
+- githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
+  version: v0.0.1-dev.dda9cb5
+  files:
+    - releaseFile: registration-bungeecord.jar
+      output: registration.jar
+      destination: templates/every_bungeecord/plugins
+    - releaseFile: registration-velocity.jar
+      output: registration.jar
+      destination: templates/every_velocity/plugins
+# TODO: Add connection plugin repo
