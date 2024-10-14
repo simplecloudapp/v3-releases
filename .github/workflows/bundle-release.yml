@@ -40,8 +40,23 @@ jobs:
           WEEK=$(date +%V)
           echo "Current week number: $WEEK"
 
-          RELEASE_IN_WEEK=$(git rev-list --count --since="last week" HEAD)
-          echo "Commits since last week: $RELEASE_IN_WEEK"
+          # Get the current branch name
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "Current branch: $BRANCH"
+
+          # Calculate the start of the week (Monday)
+          WEEK_START=$(date -d "last monday" +%Y-%m-%d)
+          echo "Start of the week: $WEEK_START"
+
+          # Count tags on this branch created since the start of the week
+          RELEASE_IN_WEEK=$(git tag --list "v${YEAR}.${WEEK}.*" --merged "$BRANCH" --sort=creatordate | 
+                            git for-each-ref --format="%(creatordate:short)%(refname:short)" --stdin | 
+                            awk -v start="$WEEK_START" '$1 >= start {print $2}' | 
+                            wc -l)
+
+          # Increment the count for the new release
+          RELEASE_IN_WEEK=$((RELEASE_IN_WEEK + 1))
+          echo "Release number in this week: $RELEASE_IN_WEEK"
 
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_IN_WEEK}"
           echo "Generated RELEASE_NAME: $RELEASE_NAME"
