@@ -26,32 +26,35 @@ def process_components():
     for component in components:
         repo_url = component['githubRepo']
         version = component['version']
-        release_file = component['releaseFile']
-        output = component['output']
-        destination = component['destination']
+        files = component['files']
 
         api_url = f"{repo_url.replace('github.com', 'api.github.com/repos')}/releases/tags/{version}"
         response = requests.get(api_url, headers=headers)
         response.raise_for_status()
         release_data = response.json()
 
-        for asset in release_data['assets']:
-            if asset['name'] == release_file:
-                download_url = asset['url']
-                break
-        else:
-            raise Exception(f"Release file {release_file} not found in release {version} of {repo_url}")
+        for file_info in files:
+            release_file = file_info['releaseFile']
+            output = file_info['output']
+            destination = file_info['destination']
 
-        output_path = os.path.join('bundle', destination, output)
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+            for asset in release_data['assets']:
+                if asset['name'] == release_file:
+                    download_url = asset['url']
+                    break
+            else:
+                raise Exception(f"Release file {release_file} not found in release {version} of {repo_url}")
 
-        # Use the asset URL and add the 'Accept' header for downloading
-        download_headers = headers.copy()
-        download_headers['Accept'] = 'application/octet-stream'
-        download_file(download_url, output_path, download_headers)
+            output_path = os.path.join('bundle', destination, output)
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        # Copy the file to release_files directory
-        shutil.copy(output_path, os.path.join('release_files', output))
+            # Use the asset URL and add the 'Accept' header for downloading
+            download_headers = headers.copy()
+            download_headers['Accept'] = 'application/octet-stream'
+            download_file(download_url, output_path, download_headers)
+
+            # Copy the file to release_files directory
+            shutil.copy(output_path, os.path.join('release_files', output))
 
     contents_dir = 'contents'
     if os.path.exists(contents_dir):
