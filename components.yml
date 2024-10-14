@@ -2,7 +2,7 @@
   version: v0.0.30-dev.bf5da83
   files:
     - releaseFile: controller-runtime.jar
-      output: controller.jar
+      output: controller-runtime.jar
       destination: controller/
     - releaseFile: controller-api.jar
       output: controller-api.jar
