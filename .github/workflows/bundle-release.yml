@@ -35,24 +35,21 @@ jobs:
 
       - name: Generate release name and tag
         id: release_info
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Starting release name and tag generation..."
 
           YEAR=$(date +%Y)
-          echo "Current year: $YEAR"
-
           WEEK=$(date +%V)
-          echo "Current week number: $WEEK"
-
-          # Get the short commit hash
           COMMIT_HASH=$(git rev-parse --short HEAD)
-          echo "Commit hash: $COMMIT_HASH"
 
-          RELEASE_NAME="${YEAR}.${WEEK}.dev-${COMMIT_HASH}"
-          echo "Generated RELEASE_NAME: $RELEASE_NAME"
+          # Get the count of releases for the current year and week
+          RELEASE_COUNT=$(gh release list --limit 1000 | grep "^${YEAR}.${WEEK}" | wc -l)
+          RELEASE_COUNT=$((RELEASE_COUNT + 1))
 
+          RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_COUNT}.dev-${COMMIT_HASH}"
           TAG_NAME="v${RELEASE_NAME}"
-          echo "Generated TAG_NAME: $TAG_NAME"
 
           echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
           echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
