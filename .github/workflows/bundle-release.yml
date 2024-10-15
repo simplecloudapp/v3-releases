@@ -45,7 +45,7 @@ jobs:
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
           # Get the count of releases for the current year and week
-          RELEASE_COUNT=$(gh release list --limit 1000 | grep "^${YEAR}.${WEEK}" | wc -l)
+          RELEASE_COUNT=$(gh release list --limit 1000 | grep "^v${YEAR}.${WEEK}" | wc -l)
           RELEASE_COUNT=$((RELEASE_COUNT + 1))
 
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_COUNT}.dev-${COMMIT_HASH}"
