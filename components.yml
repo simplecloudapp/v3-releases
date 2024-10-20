@@ -1,5 +1,5 @@
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-  version: v0.0.30-dev.bf5da83
+  version: v0.0.30-dev.4d0758b
   files:
     - releaseFile: controller-runtime.jar
       output: controller-runtime.jar
@@ -8,7 +8,7 @@
       output: controller-api.jar
       destination: libs/
 - githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-  version: v0.0.2-dev.73b285f
+  version: v0.0.2-dev.335dfa9
   files:
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
