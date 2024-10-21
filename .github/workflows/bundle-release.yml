@@ -45,21 +45,20 @@ jobs:
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
           # Get the count of releases for the current year and week
-          RELEASE_COUNT=$(gh release list --limit 1000 | grep -c "v${YEAR}.${WEEK}")
+          RELEASE_COUNT=$(gh release list --limit 1000 | grep -c "v${YEAR}.${WEEK}" || echo 1)
           RELEASE_COUNT=$((RELEASE_COUNT + 1))
 
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_COUNT}.dev-${COMMIT_HASH}"
           TAG_NAME="v${RELEASE_NAME}"
 
-          echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_OUTPUT
-          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
+          echo "RELEASE_NAME=${RELEASE_NAME}" >> "$GITHUB_OUTPUT"
+          echo "TAG_NAME=${TAG_NAME}" >> "$GITHUB_OUTPUT"
 
           echo "Release information set:"
           echo "  RELEASE_NAME: $RELEASE_NAME"
           echo "  TAG_NAME: $TAG_NAME"
 
           echo "Release name and tag generation completed."
-
 
       - name: Create Release
         id: create_release
