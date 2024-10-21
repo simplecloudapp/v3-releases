@@ -38,6 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e  # Exit immediately if a command exits with a non-zero status
           echo "Starting release name and tag generation..."
 
           YEAR=$(date +%Y)
@@ -48,9 +49,10 @@ jobs:
           RELEASE_COUNT=$(gh release list --limit 1000 | grep -c "v${YEAR}.${WEEK}" || echo 0)
           RELEASE_COUNT=$((RELEASE_COUNT + 1))
 
-          # Ensure RELEASE_COUNT is a single line
+          # Ensure RELEASE_COUNT is a single line and starts from 1
           RELEASE_COUNT=$(echo "$RELEASE_COUNT" | tr -d '\n')
 
+          # Construct the release name and tag
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_COUNT}.dev-${COMMIT_HASH}"
           TAG_NAME="v${RELEASE_NAME}"
 
