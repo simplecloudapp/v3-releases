@@ -46,11 +46,12 @@ jobs:
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
           # Get the count of releases for the current year and week
-          RELEASE_COUNT=$(gh release list --limit 1000 | grep -c "v${YEAR}.${WEEK}" || echo 0)
+          RELEASE_COUNT=$(gh release list --limit 1000 | grep -c "v${YEAR}.${WEEK}" || true)
+          # Ensure RELEASE_COUNT is a single line, contains only digits, and is at least 0
+          RELEASE_COUNT=$(echo "$RELEASE_COUNT" | tr -d '\n' | grep -oE '[0-9]+' || echo 0)
           RELEASE_COUNT=$((RELEASE_COUNT + 1))
 
-          # Ensure RELEASE_COUNT is a single line and starts from 1
-          RELEASE_COUNT=$(echo "$RELEASE_COUNT" | tr -d '\n')
+          echo "Debug: RELEASE_COUNT = $RELEASE_COUNT"
 
           # Construct the release name and tag
           RELEASE_NAME="${YEAR}.${WEEK}.${RELEASE_COUNT}.dev-${COMMIT_HASH}"
