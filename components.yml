@@ -1,5 +1,5 @@
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-  version: v0.0.30-dev.4d0758b
+  version: v0.0.30-dev.35670a4
   files:
     - releaseFile: controller-runtime.jar
       output: controller-runtime.jar
