@@ -1,3 +1,9 @@
+- githubRepo: https://github.com/theSimpleCloud/auto-updater
+  version: v0.0.1-dev.3c54ac3
+  files:
+    - releaseFile: auto-updater.jar
+      output: auto-updater.jar
+      destination: ./
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
   version: v0.0.30-dev.95b1794
   files:
