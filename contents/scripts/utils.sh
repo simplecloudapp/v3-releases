@@ -46,3 +46,44 @@ run_auto_updater() {
 
   popd > /dev/null
 }
+
+get_component_status() {
+    local process_pattern=$1
+    local session_name=$2
+    local config_path=$3
+    local current_version_file=$4
+
+    local pid=$(pgrep -f "$process_pattern" | head -n1)
+    local running=false
+    local uptime=""
+    local memory=""
+    local current_version=""
+
+    if [ -n "$pid" ]; then
+        running=true
+
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            uptime=$(ps -p $pid -o etime | tail -n1 | tr -d ' ')
+            memory=$(ps -p $pid -o rss | tail -n1 | awk '{printf "%.1f", $1/1024}')
+        else
+            uptime=$(ps -p $pid -o etime= | tr -d ' ')
+            memory=$(ps -p $pid -o rss= | awk '{printf "%.1f", $1/1024}')
+        fi
+
+        if [ -f "$current_version_file" ]; then
+            current_version=$(cat "$current_version_file")
+        fi
+    fi
+
+    cat << EOF
+{
+    "running": $running,
+    "pid": $([ -n "$pid" ] && echo "\"$pid\"" || echo "null"),
+    "uptime": $([ -n "$uptime" ] && echo "\"$uptime\"" || echo "null"),
+    "memory_usage_mb": $([ -n "$memory" ] && echo "$memory" || echo "null"),
+    "current_version": $([ -n "$current_version" ] && echo "\"$current_version\"" || echo "null"),
+    "screen_session": "$session_name",
+    "config_path": "$config_path"
+}
+EOF
+}
