@@ -14,7 +14,7 @@
       output: controller-api.jar
       destination: libs/
 - githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-  version: v0.0.2-dev.515dcda
+  version: v0.0.2-dev.fb55d20
   files:
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
