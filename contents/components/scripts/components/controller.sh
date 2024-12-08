@@ -9,9 +9,9 @@ controller_dir="$ROOT_DIR/controller"
 controller_launcher="$controller_dir/controller-runtime.jar"
 
 application_config="$controller_dir/application.yml"
-versions_config="$ROOT_DIR/versions.yml"
+versions_config="$ROOT_DIR/auto-updater/versions.yml"
 current_version_file="$controller_dir/current_version.txt"
-auto_updater_jar="$ROOT_DIR/auto-updater.jar"
+auto_updater_jar="$ROOT_DIR/auto-updater/auto-updater.jar"
 
 controller_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $controller_launcher"
 

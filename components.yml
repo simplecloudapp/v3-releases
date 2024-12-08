@@ -2,23 +2,23 @@
   version: v0.0.1-dev.6d2050e
   files:
     - releaseFile: auto-updater.jar
-      output: auto-updater.jar
+      output: components/auto-updater/auto-updater.jar
       destination: ./
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
   version: v0.0.30-dev.a36640f
   files:
     - releaseFile: controller-runtime.jar
       output: controller-runtime.jar
-      destination: controller/
+      destination: components/controller/
     - releaseFile: controller-api.jar
       output: controller-api.jar
-      destination: libs/
+      destination: components/libs/
 - githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
   version: v0.0.2-dev.fb55d20
   files:
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
-      destination: droplets/serverhost
+      destination: components/droplets/serverhost
 - githubRepo: https://github.com/theSimpleCloud/event-wrapper
   version: v0.0.1-dev.950792a
   files:

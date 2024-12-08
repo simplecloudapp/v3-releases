@@ -5,13 +5,13 @@ ROOT_DIR=$(dirname "$(dirname "$SCRIPT_DIR")")
 source "$ROOT_DIR/scripts/utils.sh"
 
 serverhost_session="simplecloud-serverhost"
-serverhost_dir="$ROOT_DIR/droplets/serverhost"
+serverhost_dir="$ROOT_DIR/serverhost"
 serverhost_launcher="$serverhost_dir/serverhost-runtime.jar"
 
 application_config="$serverhost_dir/application.yml"
-versions_config="$ROOT_DIR/versions.yml"
+versions_config="$ROOT_DIR/auto-updater/versions.yml"
 current_version_file="$serverhost_dir/current_version.txt"
-auto_updater_jar="$ROOT_DIR/auto-updater.jar"
+auto_updater_jar="$ROOT_DIR/auto-updater/auto-updater.jar"
 
 serverhost_cmd="java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:CompileThreshold=100 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -Xmx512m -Xms256m -jar $serverhost_launcher"
 
