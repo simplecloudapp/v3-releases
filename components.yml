@@ -18,7 +18,7 @@
   files:
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
-      destination: components/droplets/serverhost
+      destination: components/serverhost
 - githubRepo: https://github.com/theSimpleCloud/event-wrapper
   version: v0.0.1-dev.950792a
   files:
