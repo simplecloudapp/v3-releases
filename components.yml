@@ -5,7 +5,7 @@
       output: auto-updater.jar
       destination: components/auto-updater/
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-  version: v0.0.30-dev.a36640f
+  version: v0.0.30-dev.d45dc73
   files:
     - releaseFile: controller-runtime.jar
       output: controller-runtime.jar
