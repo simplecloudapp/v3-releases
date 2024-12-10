@@ -43,4 +43,16 @@
     - releaseFile: registration-velocity.jar
       output: registration.jar
       destination: templates/every_velocity/plugins
+- githubRepo: https://github.com/theSimpleCloud/proxy-plugin
+  version: v0.0.1-dev.887d518
+  files:
+    - releaseFile: proxy-bungeecord.jar
+      output: proxy.jar
+      destination: templates/every_bungeecord/plugins
+    - releaseFile: proxy-bungeecord.jar
+      output: proxy.jar
+      destination: templates/every_waterfall/plugins
+    - releaseFile: proxy-velocity.jar
+      output: proxy.jar
+      destination: templates/every_velocity/plugins
 # TODO: Add connection plugin repo
