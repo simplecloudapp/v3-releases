@@ -25,6 +25,9 @@
     - releaseFile: event-wrapper-bungeecord.jar
       output: event-wrapper.jar
       destination: templates/every_bungeecord/plugins
+    - releaseFile: event-wrapper-bungeecord.jar
+      output: event-wrapper.jar
+      destination: templates/every_waterfall/plugins
     - releaseFile: event-wrapper-velocity.jar
       output: event-wrapper.jar
       destination: templates/every_velocity/plugins
@@ -34,6 +37,9 @@
     - releaseFile: registration-bungeecord.jar
       output: registration.jar
       destination: templates/every_bungeecord/plugins
+    - releaseFile: registration-bungeecord.jar
+      output: registration.jar
+      destination: templates/every_waterfall/plugins
     - releaseFile: registration-velocity.jar
       output: registration.jar
       destination: templates/every_velocity/plugins
