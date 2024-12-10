@@ -20,11 +20,14 @@
       output: serverhost-runtime.jar
       destination: components/serverhost
 - githubRepo: https://github.com/theSimpleCloud/event-wrapper
-  version: v0.0.1-dev.968f5f5
+  version: v0.0.1-dev.5924903
   files:
     - releaseFile: event-wrapper-bungeecord.jar
       output: event-wrapper.jar
       destination: templates/every_bungeecord/plugins
+    - releaseFile: event-wrapper-bungeecord.jar
+      output: event-wrapper.jar
+      destination: templates/every_waterfall/plugins  
     - releaseFile: event-wrapper-velocity.jar
       output: event-wrapper.jar
       destination: templates/every_velocity/plugins
@@ -34,15 +37,21 @@
     - releaseFile: registration-bungeecord.jar
       output: registration.jar
       destination: templates/every_bungeecord/plugins
+    - releaseFile: registration-bungeecord.jar
+      output: registration.jar
+      destination: templates/every_waterfall/plugins  
     - releaseFile: registration-velocity.jar
       output: registration.jar
       destination: templates/every_velocity/plugins
 - githubRepo: https://github.com/theSimpleCloud/proxy-plugin
-  version: v0.0.1-dev.c11c574
+  version: v0.0.1-dev.887d518
   files:
     - releaseFile: proxy-bungeecord.jar
       output: proxy.jar
       destination: templates/every_bungeecord/plugins
+    - releaseFile: proxy-bungeecord.jar
+      output: proxy.jar
+      destination: templates/every_waterfall/plugins
     - releaseFile: proxy-velocity.jar
       output: proxy.jar
       destination: templates/every_velocity/plugins
