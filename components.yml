@@ -5,7 +5,7 @@
       output: auto-updater.jar
       destination: components/auto-updater/
 - githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-  version: v0.0.30-dev.9247c15
+  version: v0.0.30-dev.ab473ef
   files:
     - releaseFile: controller-runtime.jar
       output: controller-runtime.jar
@@ -14,7 +14,7 @@
       output: controller-api.jar
       destination: components/libs/
 - githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-  version: v0.0.2-dev.b28d718
+  version: v0.0.2-dev.9191de4
   files:
     - releaseFile: serverhost-runtime.jar
       output: serverhost-runtime.jar
