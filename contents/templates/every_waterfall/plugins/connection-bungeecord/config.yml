@@ -41,7 +41,7 @@ fallback-connections-config:
   enabled: true
   no-target-connection-found-message:
     <color:#dc2626>You have been disconnected from the network
-    since you have been kicked and no fallback server are available.
+    since there is no fallback server are available.
   target-connections:
     - name: "lobby"
       priority: 0
