@@ -1,15 +1,74 @@
 connections:
   - name: "lobby"
-    priority: 0
-    command-ref: "lobby"
-    try-on-login: true
     server-name-matcher:
       operation: "STARTS_WITH"
       value: "lobby"
+  - name: "hub"
+    server-name-matcher:
+      operation: "STARTS_WITH"
+      value: "hub"
+  - name: "premium-lobby"
+    server-name-matcher:
+      operation: "STARTS_WITH"
+      value: "premium"
+  - name: "vip-lobby"
+    server-name-matcher:
+      operation: "STARTS_WITH"
+      value: "vip"
+  - name: "silent-lobby"
+    server-name-matcher:
+      operation: "STARTS_WITH"
+      value: "silent"
+
+network-join-targets:
+  enabled: true
+  no-target-connection-found-message:
+    <color:#dc2626>Couldn't connect you to the network because
+    no target servers are available.
+  target-connections:
+    - name: "lobby"
+      priority: 0
+    - name: "hub"
+      priority: 0
+    - name: "premium-lobby"
+      priority: 10
+    - name: "vip-lobby"
+      priority: 20
+    - name: "silent-lobby"
+      priority: 20
+
+fallback-connections-config:
+  enabled: true
+  no-target-connection-found-message:
+    <color:#dc2626>You have been disconnected from the network
+    since you have been kicked and no fallback server are available.
+  target-connections:
+    - name: "lobby"
+      priority: 0
+    - name: "hub"
+      priority: 0
+    - name: "premium-lobby"
+      priority: 10
+    - name: "vip-lobby"
+      priority: 20
+    - name: "silent-lobby"
+      priority: 20
 
 commands:
   - name: "lobby"
-    already-connected-message: "<red>You are already connected to the lobby!"
+    already-connected-message: "<color:#dc2626>You are already connected to this lobby!"
+    no-target-connection-found: "<color:#dc2626>Couldn't find a target connection!"
+    target-connections:
+      - name: "lobby"
+        priority: 0
+      - name: "hub"
+        priority: 0
+      - name: "premium-lobby"
+        priority: 10
+      - name: "vip-lobby"
+        priority: 20
+      - name: "silent-lobby"
+        priority: 20
     aliases:
       - "l"
       - "hub"
