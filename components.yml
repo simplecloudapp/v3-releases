@@ -1,5 +1,5 @@
 - githubRepo: https://github.com/theSimpleCloud/auto-updater
-  version: v0.0.1-dev.6d2050e
+  version: v0.0.1-dev.a6292c1
   files:
     - releaseFile: auto-updater.jar
       output: auto-updater.jar
