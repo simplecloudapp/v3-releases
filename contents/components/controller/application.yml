@@ -1,3 +1,6 @@
 github-repository: theSimpleCloud/v3-releases
-release-file: controller-runtime.jar
-output-file: ../controller/controller-runtime.jar
+files:
+  - release-file: controller-runtime.jar
+    output-file: ../controller/controller-runtime.jar
+  - release-file: controller-api.jar
+    output-file: ../libs/controller-api.jar

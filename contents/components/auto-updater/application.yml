@@ -1,0 +1,4 @@
+github-repository: theSimpleCloud/v3-releases
+files:
+  - release-file: auto-updater.jar
+    output-file: ../auto-updater/auto-updater.jar
