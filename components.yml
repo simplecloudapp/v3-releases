@@ -82,6 +82,23 @@ components:
         output: proxy.jar
         destination: templates/every_velocity/plugins
 
+  - name: player-droplet
+    githubRepo: https://github.com/theSimpleCloud/player-droplet
+    version: v0.0.1-dev.d77f5b5
+    files:
+      - releaseFile: player-runtime.jar
+        output: player-runtime.jar
+        destination: components/player-droplet/
+      - releaseFile: plugin-paper.jar
+        output: player-plugin-paper.jar
+        destination: templates/droplet-plugins/paper
+      - releaseFile: plugin-velocity.jar
+        output: player-plugin-velocity.jar
+        destination: templates/droplet-plugins/velocity
+      - releaseFile: plugin-bungeecord.jar
+        output: player-plugin-bungeecord.jar
+        destination: templates/droplet-plugins/bungeecord
+
 bundles:
   - name: bundle
     components:
@@ -94,6 +111,12 @@ bundles:
       - proxy-essentials
     contents:
       - source: contents
+        destination: /
+  - name: bundle
+    components:
+      - player-droplet
+     contents:
+      - source: contents/components/droplets/player-droplet
         destination: /
 
 releaseFiles:
