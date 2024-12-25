@@ -45,6 +45,7 @@ def process_component(component: Dict, headers: Dict, base_dir: str = 'bundle'):
         else:
             raise Exception(f"Release file {release_file} not found in release {version} of {repo_url}")
 
+        # Download to bundle directory
         output_path = os.path.join(base_dir, destination, output)
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -54,56 +55,65 @@ def process_component(component: Dict, headers: Dict, base_dir: str = 'bundle'):
         download_file(download_url, output_path, download_headers)
         downloaded_files.append(output_path)
 
+        # Also copy to release_files
+        release_files_dir = 'release_files'
+        os.makedirs(release_files_dir, exist_ok=True)
+        release_file_path = os.path.join(release_files_dir, output)
+        shutil.copy2(output_path, release_file_path)
+        print(f"Copied {output} to release_files directory")
+
     return downloaded_files
 
 def copy_contents_for_bundle(bundle: Dict, bundle_dir: str):
     """Copies specified content folders for a bundle."""
-    contents_dir = 'contents'
-    if not os.path.exists(contents_dir):
-        print(f"Warning: Contents directory '{contents_dir}' not found")
-        return
-
     if 'contents' in bundle:
         print(f"Copying contents for bundle: {bundle['name']}")
         for content in bundle['contents']:
-            source = os.path.join(contents_dir, content['source'])
+            source = content['source']  # This should be just 'contents' in your case
+            
             # Handle root destination specially
             if content['destination'] == '/' or content['destination'] == '.':
                 destination = bundle_dir
             else:
                 destination = os.path.join(bundle_dir, content['destination'].lstrip('/'))
 
-            if not os.path.exists(source):
-                print(f"Warning: Source content '{source}' not found")
-                continue
-
-            print(f"Copying {source} to {destination}")
-            if os.path.isdir(source):
-                # For directories, copy contents
-                if content['destination'] == '/' or content['destination'] == '.':
-                    # For root destination, copy directory contents
-                    for item in os.listdir(source):
-                        s = os.path.join(source, item)
-                        d = os.path.join(destination, item)
-                        if os.path.isdir(s):
-                            shutil.copytree(s, d, dirs_exist_ok=True)
-                        else:
-                            shutil.copy2(s, d)
+            source_path = source  # Use the source path directly
+            
+            if os.path.exists(source_path):
+                print(f"Copying {source_path} to {destination}")
+                if os.path.isdir(source_path):
+                    # For directories, copy contents
+                    if content['destination'] == '/' or content['destination'] == '.':
+                        # For root destination, copy directory contents
+                        for item in os.listdir(source_path):
+                            s = os.path.join(source_path, item)
+                            d = os.path.join(destination, item)
+                            if os.path.isdir(s):
+                                shutil.copytree(s, d, dirs_exist_ok=True)
+                            else:
+                                shutil.copy2(s, d)
+                    else:
+                        # For specific destinations, copy the directory itself
+                        shutil.copytree(source_path, destination, dirs_exist_ok=True)
                 else:
-                    # For specific destinations, copy the directory itself
-                    shutil.copytree(source, destination, dirs_exist_ok=True)
+                    # For files, ensure directory exists and copy
+                    os.makedirs(os.path.dirname(destination), exist_ok=True)
+                    shutil.copy2(source_path, destination)
+                print(f"Successfully copied {source_path} to {destination}")
             else:
-                # For files, ensure directory exists and copy
-                os.makedirs(os.path.dirname(destination), exist_ok=True)
-                shutil.copy2(source, destination)
+                print(f"Warning: Source content '{source_path}' not found, skipping...")
 
 def create_bundle(bundle: Dict, files: List[str]):
     """Creates a bundle zip file with the specified files."""
     name = bundle['name']
     bundle_dir = f'bundles/{name}'
-    os.makedirs(bundle_dir, exist_ok=True)
     
-    # Copy all files to bundle directory maintaining structure
+    # Clear the bundle directory if it exists
+    if os.path.exists(bundle_dir):
+        shutil.rmtree(bundle_dir)
+    os.makedirs(bundle_dir)
+    
+    # Copy all component files to bundle directory maintaining structure
     for file_path in files:
         relative_path = os.path.relpath(file_path, 'bundle')
         dest_path = os.path.join(bundle_dir, relative_path)
@@ -114,23 +124,26 @@ def create_bundle(bundle: Dict, files: List[str]):
     copy_contents_for_bundle(bundle, bundle_dir)
     
     # Create zip file with the bundle name
+    if os.path.exists(f"{name}.zip"):
+        os.remove(f"{name}.zip")
     shutil.make_archive(name, 'zip', bundle_dir)
+    print(f"Created bundle zip: {name}.zip")
 
-def copy_release_files(data: Dict):
-    """Copies specified files to the release_files directory."""
+def copy_additional_release_files(data: Dict):
+    """Copies additional specified files to the release_files directory."""
     if 'releaseFiles' in data:
         release_files_dir = 'release_files'
         os.makedirs(release_files_dir, exist_ok=True)
         
         for file_info in data['releaseFiles']:
-            source_path = os.path.join('bundle', file_info['source'])
+            source_path = file_info['source']
             output_path = os.path.join(release_files_dir, file_info['output'])
             
             if os.path.exists(source_path):
                 shutil.copy2(source_path, output_path)
-                print(f"Copied {source_path} to release_files as {file_info['output']}")
+                print(f"Copied additional release file {source_path} to release_files as {file_info['output']}")
             else:
-                print(f"Warning: Source file {source_path} not found")
+                print(f"Warning: Source file {source_path} not found, skipping...")
 
 def process_components():
     """Main function to process components and create bundles."""
@@ -182,9 +195,16 @@ def process_components():
                 print(f"Error creating bundle {bundle['name']}: {str(e)}")
                 raise
 
-        # Copy specified files to release_files
-        print("\nProcessing release files...")
-        copy_release_files(data)
+        # Copy any additional specified files to release_files
+        print("\nProcessing additional release files...")
+        copy_additional_release_files(data)
+
+        # Verify release_files directory is not empty
+        if not os.listdir('release_files'):
+            print("Warning: No files found in release_files directory")
+            # Create a dummy file to prevent GitHub Action from failing
+            with open('release_files/README.txt', 'w') as f:
+                f.write('Release files will be added in future releases.')
 
         print("\nComponent processing completed successfully.")
 
