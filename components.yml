@@ -1,69 +1,101 @@
-- githubRepo: https://github.com/theSimpleCloud/auto-updater
-  version: v0.0.1-dev.a6292c1
-  files:
-    - releaseFile: auto-updater.jar
-      output: auto-updater.jar
-      destination: components/auto-updater/
-- githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-  version: v0.0.30-dev.2d36526
-  files:
-    - releaseFile: controller-runtime.jar
-      output: controller-runtime.jar
-      destination: components/controller/
-    - releaseFile: controller-api.jar
-      output: controller-api.jar
-      destination: components/libs/
-- githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-  version: v0.0.2-dev.a60991e
-  files:
-    - releaseFile: serverhost-runtime.jar
-      output: serverhost-runtime.jar
-      destination: components/serverhost
-- githubRepo: https://github.com/theSimpleCloud/event-wrapper
-  version: v0.0.1-dev.968f5f5
-  files:
-    - releaseFile: event-wrapper-bungeecord.jar
-      output: event-wrapper.jar
-      destination: templates/every_bungeecord/plugins
-    - releaseFile: event-wrapper-bungeecord.jar
-      output: event-wrapper.jar
-      destination: templates/every_waterfall/plugins
-    - releaseFile: event-wrapper-velocity.jar
-      output: event-wrapper.jar
-      destination: templates/every_velocity/plugins
-- githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
-  version: v0.0.1-dev.dda9cb5
-  files:
-    - releaseFile: registration-bungeecord.jar
-      output: registration.jar
-      destination: templates/every_bungeecord/plugins
-    - releaseFile: registration-bungeecord.jar
-      output: registration.jar
-      destination: templates/every_waterfall/plugins
-    - releaseFile: registration-velocity.jar
-      output: registration.jar
-      destination: templates/every_velocity/plugins
-- githubRepo: https://github.com/theSimpleCloud/server-connection-plugin
-  version: v0.0.1-dev.17d4d78
-  files:
-    - releaseFile: connection-bungeecord.jar
-      output: connection.jar
-      destination: templates/every_bungeecord/plugins
-    - releaseFile: connection-bungeecord.jar
-      output: connection.jar
-      destination: templates/every_waterfall/plugins
-    - releaseFile: connection-velocity.jar
-      output: connection.jar
-      destination: templates/every_velocity/plugins
-- githubRepo: https://github.com/theSimpleCloud/proxy-essentials-plugin
-  version: v0.0.1-dev.887d518
-  files:
-    - releaseFile: proxy-bungeecord.jar
-      output: proxy.jar
-      destination: templates/every_bungeecord/plugins
-    - releaseFile: proxy-bungeecord.jar
-      output: proxy.jar
-      destination: templates/every_waterfall/plugins
-    - releaseFile: proxy-velocity.jar
-      output: proxy.jar
-      destination: templates/every_velocity/plugins
+components:
+  - name: auto-updater
+    githubRepo: https://github.com/theSimpleCloud/auto-updater
+    version: v0.0.1-dev.a6292c1
+    files:
+      - releaseFile: auto-updater.jar
+        output: auto-updater.jar
+        destination: components/auto-updater/
+
+  - name: controller
+    githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
+    version: v0.0.30-dev.2d36526
+    files:
+      - releaseFile: controller-runtime.jar
+        output: controller-runtime.jar
+        destination: components/controller/
+      - releaseFile: controller-api.jar
+        output: controller-api.jar
+        destination: components/libs/
+
+  - name: serverhost
+    githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
+    version: v0.0.2-dev.a60991e
+    files:
+      - releaseFile: serverhost-runtime.jar
+        output: serverhost-runtime.jar
+        destination: components/serverhost
+
+  - name: event-wrapper
+    githubRepo: https://github.com/theSimpleCloud/event-wrapper
+    version: v0.0.1-dev.968f5f5
+    files:
+      - releaseFile: event-wrapper-bungeecord.jar
+        output: event-wrapper.jar
+        destination: templates/every_bungeecord/plugins
+      - releaseFile: event-wrapper-bungeecord.jar
+        output: event-wrapper.jar
+        destination: templates/every_waterfall/plugins
+      - releaseFile: event-wrapper-velocity.jar
+        output: event-wrapper.jar
+        destination: templates/every_velocity/plugins
+
+  - name: server-registration
+    githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
+    version: v0.0.1-dev.dda9cb5
+    files:
+      - releaseFile: registration-bungeecord.jar
+        output: registration.jar
+        destination: templates/every_bungeecord/plugins
+      - releaseFile: registration-bungeecord.jar
+        output: registration.jar
+        destination: templates/every_waterfall/plugins
+      - releaseFile: registration-velocity.jar
+        output: registration.jar
+        destination: templates/every_velocity/plugins
+
+  - name: server-connection
+    githubRepo: https://github.com/theSimpleCloud/server-connection-plugin
+    version: v0.0.1-dev.17d4d78
+    files:
+      - releaseFile: connection-bungeecord.jar
+        output: connection.jar
+        destination: templates/every_bungeecord/plugins
+      - releaseFile: connection-bungeecord.jar
+        output: connection.jar
+        destination: templates/every_waterfall/plugins
+      - releaseFile: connection-velocity.jar
+        output: connection.jar
+        destination: templates/every_velocity/plugins
+
+  - name: proxy-essentials
+    githubRepo: https://github.com/theSimpleCloud/proxy-essentials-plugin
+    version: v0.0.1-dev.887d518
+    files:
+      - releaseFile: proxy-bungeecord.jar
+        output: proxy.jar
+        destination: templates/every_bungeecord/plugins
+      - releaseFile: proxy-bungeecord.jar
+        output: proxy.jar
+        destination: templates/every_waterfall/plugins
+      - releaseFile: proxy-velocity.jar
+        output: proxy.jar
+        destination: templates/every_velocity/plugins
+
+bundles:
+  - name: bundle
+    components:
+      - auto-updater
+      - controller
+      - serverhost
+      - event-wrapper
+      - server-registration
+      - server-connection
+      - proxy-essentials
+    contents:
+      - source: contents
+        destination: /
+
+releaseFiles:
+  - source: contents/components/envoy/envoy-bootstrap.yaml
+    output: envoy-bootstrap.yaml
