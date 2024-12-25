@@ -1,8 +1,6 @@
 services:
   envoy:
     network_mode: "host"
-    image: envoyproxy/envoy:dev-2c84739549e6875aa1bac2983e7a0c43725f77e9
-    ports:
-      - "8080:8080"
+    image: envoyproxy/envoy:v1.31.4
     volumes:
-      - ./controller-envoy.yaml:/etc/envoy/envoy.yaml
+      - ./envoy-bootstrap.yaml:/etc/envoy/envoy.yaml
