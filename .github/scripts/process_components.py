@@ -69,39 +69,43 @@ def copy_contents_for_bundle(bundle: Dict, bundle_dir: str):
     if 'contents' in bundle:
         print(f"Copying contents for bundle: {bundle['name']}")
         for content in bundle['contents']:
-            source = content['source']  # This should be just 'contents' in your case
-            
-            # Handle root destination specially
-            if content['destination'] == '/' or content['destination'] == '.':
-                destination = bundle_dir
-            else:
-                destination = os.path.join(bundle_dir, content['destination'].lstrip('/'))
+            source = content['source']
+            destination = content['destination']
 
-            source_path = source  # Use the source path directly
-            
-            if os.path.exists(source_path):
-                print(f"Copying {source_path} to {destination}")
-                if os.path.isdir(source_path):
-                    # For directories, copy contents
-                    if content['destination'] == '/' or content['destination'] == '.':
-                        # For root destination, copy directory contents
-                        for item in os.listdir(source_path):
-                            s = os.path.join(source_path, item)
-                            d = os.path.join(destination, item)
+            # Handle root destination
+            if destination == '/' or destination == '.':
+                final_destination = bundle_dir
+            else:
+                final_destination = os.path.join(bundle_dir, destination.lstrip('/'))
+
+            print(f"Copying {source} to {final_destination}")
+
+            try:
+                # Create destination directory if it doesn't exist
+                os.makedirs(os.path.dirname(final_destination), exist_ok=True)
+
+                if os.path.isdir(source):
+                    # Directory handling
+                    if destination == '/' or destination == '.':
+                        # Copy directory contents to root
+                        for item in os.listdir(source):
+                            s = os.path.join(source, item)
+                            d = os.path.join(final_destination, item)
                             if os.path.isdir(s):
                                 shutil.copytree(s, d, dirs_exist_ok=True)
                             else:
                                 shutil.copy2(s, d)
                     else:
-                        # For specific destinations, copy the directory itself
-                        shutil.copytree(source_path, destination, dirs_exist_ok=True)
+                        # Copy directory itself
+                        shutil.copytree(source, final_destination, dirs_exist_ok=True)
                 else:
-                    # For files, ensure directory exists and copy
-                    os.makedirs(os.path.dirname(destination), exist_ok=True)
-                    shutil.copy2(source_path, destination)
-                print(f"Successfully copied {source_path} to {destination}")
-            else:
-                print(f"Warning: Source content '{source_path}' not found, skipping...")
+                    # File handling
+                    shutil.copy2(source, final_destination)
+                print(f"Successfully copied {source} to {final_destination}")
+            except FileNotFoundError:
+                print(f"Warning: Source '{source}' not found, skipping...")
+            except Exception as e:
+                print(f"Error copying {source}: {str(e)}")
 
 def create_bundle(bundle: Dict, files: List[str]):
     """Creates a bundle zip file with the specified files."""
