@@ -119,7 +119,7 @@ bundles:
       - source: contents/components/scripts/components/player.lua
         destination: /components/scripts/components/player.lua
       - source: contents/components/player
-        destination: /components/components/player
+        destination: /components/player
 
 releaseFiles:
   - source: contents/components/envoy/envoy-bootstrap.yaml
