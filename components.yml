@@ -88,7 +88,7 @@ components:
     files:
       - releaseFile: player-runtime.jar
         output: player-runtime.jar
-        destination: components/player-droplet/
+        destination: components/player/
       - releaseFile: plugin-paper.jar
         output: player-plugin-paper.jar
         destination: templates/droplet-plugins/paper
@@ -118,6 +118,8 @@ bundles:
     contents:
       - source: contents/components/scripts/components/player.lua
         destination: /components/scripts/components/player.lua
+      - source: contents/components/player
+        destination: /components/components/player
 
 releaseFiles:
   - source: contents/components/envoy/envoy-bootstrap.yaml
