@@ -84,7 +84,7 @@ components:
 
   - name: player
     githubRepo: https://github.com/theSimpleCloud/player-droplet
-    version: v0.0.1-dev.f3df121
+    version: v0.0.1-dev.3a18fd4
     files:
       - releaseFile: player-runtime.jar
         output: player-runtime.jar
@@ -101,7 +101,7 @@ components:
 
   - name: metrics
     githubRepo: https://github.com/theSimpleCloud/metrics-droplet
-    version: v0.0.1-dev.ad81d7c
+    version: v0.0.1-dev.ca244a7
     files:
       - releaseFile: metrics-runtime.jar
         output: metrics-runtime.jar
