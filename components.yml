@@ -20,7 +20,7 @@ components:
 
   - name: serverhost
     githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-    version: v0.0.2-dev.a60991e
+    version: 0.0.2-dev.4c56c59
     files:
       - releaseFile: serverhost-runtime.jar
         output: serverhost-runtime.jar
@@ -82,7 +82,7 @@ components:
         output: proxy.jar
         destination: templates/every_velocity/plugins
 
-  - name: player-droplet
+  - name: player
     githubRepo: https://github.com/theSimpleCloud/player-droplet
     version: v0.0.1-dev.d77f5b5
     files:
@@ -105,6 +105,7 @@ bundles:
       - auto-updater
       - controller
       - serverhost
+      - player
       - event-wrapper
       - server-registration
       - server-connection
@@ -114,7 +115,7 @@ bundles:
         destination: /
   - name: player
     components:
-      - player-droplet
+      - player
     contents:
       - source: contents/components/scripts/components/player.lua
         destination: /components/scripts/components/player.lua

@@ -2,3 +2,9 @@ github-repository: theSimpleCloud/player-droplet
 files:
   - release-file: player-runtime.jar
     output-file: ../player-droplet/player-runtime.jar
+  - release-file: plugin-paper.jar
+    output-file: ../../templates/droplet-plugins/paper
+  - release-file: plugin-velocity.jar
+    output-file: ../../templates/droplet-plugins/velocity
+  - release-file: plugin-bungeecord.jar
+    output-file: ../../templates/droplet-plugins/bungeecord
