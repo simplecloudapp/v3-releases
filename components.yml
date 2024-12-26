@@ -115,7 +115,7 @@ bundles:
   - name: player
     components:
       - player-droplet
-     contents:
+    contents:
       - source: contents/components/scipts/components/player.lua
         destination: /components/scipts/components/player.lua
 
