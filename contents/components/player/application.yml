@@ -1,4 +1,4 @@
-github-repository: theSimpleCloud/player-droplet
+github-repository: theSimpleCloud/v3-releases
 files:
   - release-file: player-runtime.jar
     output-file: ../player-droplet/player-runtime.jar
