@@ -112,12 +112,12 @@ bundles:
     contents:
       - source: contents
         destination: /
-  - name: bundle
+  - name: player
     components:
       - player-droplet
      contents:
-      - source: contents/components/droplets/player-droplet
-        destination: /
+      - source: contents/components/scipts/components/player.lua
+        destination: /components/scipts/components/player.lua
 
 releaseFiles:
   - source: contents/components/envoy/envoy-bootstrap.yaml
