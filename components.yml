@@ -116,8 +116,8 @@ bundles:
     components:
       - player-droplet
     contents:
-      - source: contents/components/scipts/components/player.lua
-        destination: /components/scipts/components/player.lua
+      - source: contents/components/scripts/components/player.lua
+        destination: /components/scripts/components/player.lua
 
 releaseFiles:
   - source: contents/components/envoy/envoy-bootstrap.yaml
