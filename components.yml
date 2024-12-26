@@ -99,6 +99,13 @@ components:
         output: player-plugin-bungeecord.jar
         destination: templates/droplet-plugins/bungeecord
 
+  - name: metrics
+    githubRepo: https://github.com/theSimpleCloud/metrics-droplet
+    version: v0.0.1-dev.ad81d7c
+    files:
+      - releaseFile: metrics-runtime.jar
+        output: metrics-runtime.jar
+
 bundles:
   - name: bundle
     components:
@@ -106,6 +113,7 @@ bundles:
       - controller
       - serverhost
       - player
+      - metrics
       - event-wrapper
       - server-registration
       - server-connection

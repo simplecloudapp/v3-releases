@@ -1,0 +1,4 @@
+github-repository: theSimpleCloud/v3-releases
+files:
+  - release-file: metrics-runtime.jar
+    output-file: ../player/metrics-runtime.jar
