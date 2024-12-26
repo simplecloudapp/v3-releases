@@ -105,6 +105,7 @@ components:
     files:
       - releaseFile: metrics-runtime.jar
         output: metrics-runtime.jar
+        destination: components/metrics/
 
 bundles:
   - name: bundle
