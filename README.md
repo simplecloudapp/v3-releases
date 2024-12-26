@@ -3,7 +3,8 @@
 ![Banner][banner]
 
 <div align="center">
-  [![Dev][badge-dev]][dev]
+  
+  [![Modrinth][badge-modrinth]][modrinth]
   [![License][badge-license]][license]
   <br>
 
@@ -46,16 +47,16 @@ This repository is licensed under [Apache 2.0][license].
 [docs-thisproject]: https://docs.simplecloud.app/v3
 [docs-contribute]: https://docs.simplecloud.app/contribute
 
-[dev]: https://github.com/theSimpleCloud/v3-releases/releases
-
 [license]: https://opensource.org/licenses/Apache-2.0
+
+[modrinth]: https://modrinth.com/organization/simplecloud
 
 [social-x]: https://x.com/simplecloudapp
 [social-bluesky]: https://bsky.app/profile/simplecloud.app
 [social-youtube]: https://www.youtube.com/@thesimplecloud9075
 [social-discord]: https://discord.simplecloud.app
 
-[badge-dev]: https://img.shields.io/github/v/release/theSimpleCloud/v3-releases?include_prereleases&label=Dev&style=flat-square&color=0ea5e9
+[badge-modrinth]: https://img.shields.io/badge/modrinth-18181b.svg?style=flat-square&logo=modrinth
 [badge-license]: https://img.shields.io/badge/apache%202.0-blue.svg?style=flat-square&label=license&labelColor=18181b&style=flat-square&color=e11d48
 [badge-discord]: https://img.shields.io/badge/Community_Discord-d95652.svg?style=flat-square&logo=discord&color=27272a
 [badge-x]: https://img.shields.io/badge/Follow_@simplecloudapp-d95652.svg?style=flat-square&logo=x&color=27272a
