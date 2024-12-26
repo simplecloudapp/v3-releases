@@ -1,10 +1,10 @@
 github-repository: theSimpleCloud/v3-releases
 files:
   - release-file: player-runtime.jar
-    output-file: ../player-droplet/player-runtime.jar
-  - release-file: plugin-paper.jar
-    output-file: ../../templates/droplet-plugins/paper
-  - release-file: plugin-velocity.jar
-    output-file: ../../templates/droplet-plugins/velocity
-  - release-file: plugin-bungeecord.jar
-    output-file: ../../templates/droplet-plugins/bungeecord
+    output-file: ../player/player-runtime.jar
+  - release-file: player-plugin-paper.jar
+    output-file: ../../templates/droplet-plugins/paper/player-plugin-paper.jar
+  - release-file: player-plugin-velocity.jar
+    output-file: ../../templates/droplet-plugins/velocity/player-plugin-velocity.jar
+  - release-file: player-plugin-bungeecord.jar
+    output-file: ../../templates/droplet-plugins/bungeecord/player-plugin-bungeecord.jar
