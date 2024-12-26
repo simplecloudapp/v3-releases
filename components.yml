@@ -84,7 +84,7 @@ components:
 
   - name: player
     githubRepo: https://github.com/theSimpleCloud/player-droplet
-    version: v0.0.1-dev.d77f5b5
+    version: v0.0.1-dev.b6d2928
     files:
       - releaseFile: player-runtime.jar
         output: player-runtime.jar
