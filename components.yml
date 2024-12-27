@@ -127,13 +127,13 @@ components:
     githubRepo: https://github.com/theSimpleCloud/command-plugin
     version: v0.0.1-dev.91cac39
     files:
-      - releaseFile: command-plugin-bungeecord.jar
+      - releaseFile: command-bungeecord.jar
         output: command-plugin.jar
         destination: templates/sc-plugins/bungeecord
-      - releaseFile: command-plugin-bungeecord.jar
+      - releaseFile: command-bungeecord.jar
         output: command-plugin.jar
         destination: templates/sc-plugins/waterfall
-      - releaseFile: command-plugin-velocity.jar
+      - releaseFile: command-velocity.jar
         output: command-plugin.jar
         destination: templates/sc-plugins/velocity
 
