@@ -111,8 +111,8 @@ components:
     githubRepo: https://github.com/theSimpleCloud/sign-plugin
     version: v0.0.1-dev.ea8c74d
     files:
-      - releaseFile: signs-paper.jar
-        output: signs-paper.jar
+      - releaseFile: sign-paper.jar
+        output: sign-paper.jar
         destination: templates/sc-plugins/paper
 
   - name: npcs
