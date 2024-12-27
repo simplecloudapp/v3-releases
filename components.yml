@@ -20,67 +20,11 @@ components:
 
   - name: serverhost
     githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-    version: v0.0.2-dev.6f358d4
+    version: v0.0.2-dev.ba77bfb
     files:
       - releaseFile: serverhost-runtime.jar
         output: serverhost-runtime.jar
         destination: components/serverhost
-
-  - name: event-wrapper
-    githubRepo: https://github.com/theSimpleCloud/event-wrapper
-    version: v0.0.1-dev.968f5f5
-    files:
-      - releaseFile: event-wrapper-bungeecord.jar
-        output: event-wrapper.jar
-        destination: templates/every_bungeecord/plugins
-      - releaseFile: event-wrapper-bungeecord.jar
-        output: event-wrapper.jar
-        destination: templates/every_waterfall/plugins
-      - releaseFile: event-wrapper-velocity.jar
-        output: event-wrapper.jar
-        destination: templates/every_velocity/plugins
-
-  - name: server-registration
-    githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
-    version: v0.0.1-dev.dda9cb5
-    files:
-      - releaseFile: registration-bungeecord.jar
-        output: registration.jar
-        destination: templates/every_bungeecord/plugins
-      - releaseFile: registration-bungeecord.jar
-        output: registration.jar
-        destination: templates/every_waterfall/plugins
-      - releaseFile: registration-velocity.jar
-        output: registration.jar
-        destination: templates/every_velocity/plugins
-
-  - name: server-connection
-    githubRepo: https://github.com/theSimpleCloud/server-connection-plugin
-    version: v0.0.1-dev.17d4d78
-    files:
-      - releaseFile: connection-bungeecord.jar
-        output: connection.jar
-        destination: templates/every_bungeecord/plugins
-      - releaseFile: connection-bungeecord.jar
-        output: connection.jar
-        destination: templates/every_waterfall/plugins
-      - releaseFile: connection-velocity.jar
-        output: connection.jar
-        destination: templates/every_velocity/plugins
-
-  - name: proxy-essentials
-    githubRepo: https://github.com/theSimpleCloud/proxy-essentials-plugin
-    version: v0.0.1-dev.887d518
-    files:
-      - releaseFile: proxy-bungeecord.jar
-        output: proxy.jar
-        destination: templates/every_bungeecord/plugins
-      - releaseFile: proxy-bungeecord.jar
-        output: proxy.jar
-        destination: templates/every_waterfall/plugins
-      - releaseFile: proxy-velocity.jar
-        output: proxy.jar
-        destination: templates/every_velocity/plugins
 
   - name: player
     githubRepo: https://github.com/theSimpleCloud/player-droplet
@@ -106,6 +50,92 @@ components:
       - releaseFile: metrics-runtime.jar
         output: metrics-runtime.jar
         destination: components/metrics/
+
+  - name: event-wrapper
+    githubRepo: https://github.com/theSimpleCloud/event-wrapper
+    version: v0.0.1-dev.968f5f5
+    files:
+      - releaseFile: event-wrapper-bungeecord.jar
+        output: event-wrapper.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: event-wrapper-bungeecord.jar
+        output: event-wrapper.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: event-wrapper-velocity.jar
+        output: event-wrapper.jar
+        destination: templates/sc-plugins/velocity
+
+  - name: server-registration
+    githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
+    version: v0.0.1-dev.c737fbc
+    files:
+      - releaseFile: registration-bungeecord.jar
+        output: registration.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: registration-bungeecord.jar
+        output: registration.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: registration-velocity.jar
+        output: registration.jar
+        destination: templates/sc-plugins/velocity
+
+  - name: server-connection
+    githubRepo: https://github.com/theSimpleCloud/server-connection-plugin
+    version: v0.0.1-dev.a77fcd5
+    files:
+      - releaseFile: connection-bungeecord.jar
+        output: connection.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: connection-bungeecord.jar
+        output: connection.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: connection-velocity.jar
+        output: connection.jar
+        destination: templates/sc-plugins/velocity
+
+  - name: proxy-essentials
+    githubRepo: https://github.com/theSimpleCloud/proxy-essentials-plugin
+    version: v0.0.1-dev.93d10ca
+    files:
+      - releaseFile: proxy-bungeecord.jar
+        output: proxy.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: proxy-bungeecord.jar
+        output: proxy.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: proxy-velocity.jar
+        output: proxy.jar
+        destination: templates/sc-plugins/velocity
+
+  - name: signs
+    githubRepo: https://github.com/theSimpleCloud/sign-plugin
+    version: v0.0.1-dev.ea8c74d
+    files:
+      - releaseFile: signs-paper.jar
+        output: signs-paper.jar
+        destination: templates/sc-plugins/paper
+
+  - name: npcs
+    githubRepo: https://github.com/theSimpleCloud/npc-plugin
+    version: v0.0.1-dev.ef37776
+    files:
+      - releaseFile: npc-paper.jar
+        output: npc-paper.jar
+        destination: templates/sc-plugins/paper
+
+  - name: command
+    githubRepo: https://github.com/theSimpleCloud/command-plugin
+    version: v0.0.1-dev.91cac39
+    files:
+      - releaseFile: command-plugin-bungeecord.jar
+        output: command-plugin.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: command-plugin-bungeecord.jar
+        output: command-plugin.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: command-plugin-velocity.jar
+        output: command-plugin.jar
+        destination: templates/sc-plugins/velocity
 
 bundles:
   - name: bundle
