@@ -9,7 +9,7 @@ components:
 
   - name: controller
     githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-    version: v0.0.30-dev.e5b5ab8
+    version: v0.0.30-dev.864aa58
     files:
       - releaseFile: controller-runtime.jar
         output: controller-runtime.jar
@@ -20,7 +20,7 @@ components:
 
   - name: serverhost
     githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-    version: v0.0.2-dev.19d999a
+    version: v0.0.2-dev.822319c
     files:
       - releaseFile: serverhost-runtime.jar
         output: serverhost-runtime.jar
