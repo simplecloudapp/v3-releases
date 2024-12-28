@@ -109,7 +109,7 @@ components:
 
   - name: signs
     githubRepo: https://github.com/theSimpleCloud/sign-plugin
-    version: v0.0.1-dev.f69b038
+    version: v0.0.1-dev.70798f2
     files:
       - releaseFile: sign-paper.jar
         output: sign-paper.jar
@@ -117,7 +117,7 @@ components:
 
   - name: npcs
     githubRepo: https://github.com/theSimpleCloud/npc-plugin
-    version: v0.0.1-dev.f4ab526
+    version: v0.0.1-dev.4c91cb6
     files:
       - releaseFile: simplecloud-npc.jar
         output: npc-paper.jar
