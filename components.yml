@@ -20,7 +20,7 @@ components:
 
   - name: serverhost
     githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-    version: v0.0.2-dev.98f4000
+    version: v0.0.2-dev.1a80da2
     files:
       - releaseFile: serverhost-runtime.jar
         output: serverhost-runtime.jar
@@ -117,7 +117,7 @@ components:
 
   - name: npcs
     githubRepo: https://github.com/theSimpleCloud/npc-plugin
-    version: v0.0.1-dev.ef37776
+    version: v0.0.1-dev.f4ab526
     files:
       - releaseFile: simplecloud-npc.jar
         output: npc-paper.jar
