@@ -95,7 +95,7 @@ components:
 
   - name: proxy-essentials
     githubRepo: https://github.com/theSimpleCloud/proxy-essentials-plugin
-    version: v0.0.1-dev.93d10ca
+    version: v0.0.1-dev.dead7eb
     files:
       - releaseFile: proxy-bungeecord.jar
         output: proxy.jar
