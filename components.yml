@@ -56,13 +56,13 @@ components:
     version: v0.0.1-dev.f199652
     files:
       - releaseFile: event-wrapper-bungeecord.jar
-        output: event-wrapper.jar
+        output: event-wrapper-bungeecord.jar
         destination: templates/sc-plugins/bungeecord
       - releaseFile: event-wrapper-bungeecord.jar
-        output: event-wrapper.jar
+        output: event-wrapper-bungeecord.jar
         destination: templates/sc-plugins/waterfall
       - releaseFile: event-wrapper-velocity.jar
-        output: event-wrapper.jar
+        output: event-wrapper-velocity.jar
         destination: templates/sc-plugins/velocity
 
   - name: server-registration
@@ -70,13 +70,13 @@ components:
     version: v0.0.1-dev.c737fbc
     files:
       - releaseFile: registration-bungeecord.jar
-        output: registration.jar
+        output: registration-bungeecord.jar
         destination: templates/sc-plugins/bungeecord
       - releaseFile: registration-bungeecord.jar
-        output: registration.jar
+        output: registration-bungeecord.jar
         destination: templates/sc-plugins/waterfall
       - releaseFile: registration-velocity.jar
-        output: registration.jar
+        output: registration-velocity.jar
         destination: templates/sc-plugins/velocity
 
   - name: server-connection
@@ -84,13 +84,13 @@ components:
     version: v0.0.1-dev.a77fcd5
     files:
       - releaseFile: connection-bungeecord.jar
-        output: connection.jar
+        output: connection-bungeecord.jar
         destination: templates/sc-plugins/bungeecord
       - releaseFile: connection-bungeecord.jar
-        output: connection.jar
+        output: connection-bungeecord.jar
         destination: templates/sc-plugins/waterfall
       - releaseFile: connection-velocity.jar
-        output: connection.jar
+        output: connection-velocity.jar
         destination: templates/sc-plugins/velocity
 
   - name: proxy-essentials
@@ -98,13 +98,13 @@ components:
     version: v0.0.1-dev.dead7eb
     files:
       - releaseFile: proxy-bungeecord.jar
-        output: proxy.jar
+        output: proxy-essentials-bungeecord.jar
         destination: templates/sc-plugins/bungeecord
       - releaseFile: proxy-bungeecord.jar
-        output: proxy.jar
+        output: proxy-essentials-bungeecord.jar
         destination: templates/sc-plugins/waterfall
       - releaseFile: proxy-velocity.jar
-        output: proxy.jar
+        output: proxy-essentials-velocity.jar
         destination: templates/sc-plugins/velocity
 
   - name: signs
@@ -128,13 +128,13 @@ components:
     version: v0.0.1-dev.91cac39
     files:
       - releaseFile: command-bungeecord.jar
-        output: command-plugin.jar
+        output: command-bungeecord-plugin.jar
         destination: templates/sc-plugins/bungeecord
       - releaseFile: command-bungeecord.jar
-        output: command-plugin.jar
+        output: command-bungeecord-plugin.jar
         destination: templates/sc-plugins/waterfall
       - releaseFile: command-velocity.jar
-        output: command-plugin.jar
+        output: command-velocity-plugin.jar
         destination: templates/sc-plugins/velocity
 
 bundles:
