@@ -53,7 +53,7 @@ components:
 
   - name: event-wrapper
     githubRepo: https://github.com/theSimpleCloud/event-wrapper
-    version: v0.0.1-dev.968f5f5
+    version: v0.0.1-dev.f199652
     files:
       - releaseFile: event-wrapper-bungeecord.jar
         output: event-wrapper.jar
