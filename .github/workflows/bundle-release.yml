@@ -41,8 +41,13 @@ jobs:
           set -e  # Exit immediately if a command exits with a non-zero status
           echo "Starting release name and tag generation..."
 
-          YEAR=$(date +%Y)
-          WEEK=$(date +%V)
+          # Get ISO year and week
+          ISO_YEAR=$(date +%G)  # ISO year
+          ISO_WEEK=$(date +%V)  # ISO week number
+
+          # Replace YEAR and WEEK assignments
+          YEAR=$ISO_YEAR
+          WEEK=$ISO_WEEK
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
           # Get the count of releases for the current year and week
