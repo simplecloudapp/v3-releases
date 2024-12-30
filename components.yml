@@ -109,7 +109,7 @@ components:
 
   - name: signs
     githubRepo: https://github.com/theSimpleCloud/sign-plugin
-    version: v0.0.1-dev.a1ba493
+    version: v0.0.1-dev.b8287eb
     files:
       - releaseFile: sign-paper.jar
         output: sign-paper.jar
