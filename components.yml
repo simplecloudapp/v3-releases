@@ -20,7 +20,7 @@ components:
 
   - name: serverhost
     githubRepo: https://github.com/theSimpleCloud/serverhost-droplet
-    version: v0.0.2-dev.496e24c
+    version: v0.0.2-dev.ad79c89
     files:
       - releaseFile: serverhost-runtime.jar
         output: serverhost-runtime.jar
