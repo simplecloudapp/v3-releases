@@ -1,7 +1,7 @@
 components:
   - name: auto-updater
     githubRepo: https://github.com/theSimpleCloud/auto-updater
-    version: v0.0.1-dev.a6292c1
+    version: v0.0.1-dev.c636158
     files:
       - releaseFile: auto-updater.jar
         output: auto-updater.jar
