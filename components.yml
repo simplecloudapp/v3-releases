@@ -81,7 +81,7 @@ components:
 
   - name: server-connection
     githubRepo: https://github.com/theSimpleCloud/server-connection-plugin
-    version: v0.0.1-dev.a77fcd5
+    version: v0.0.1-dev.0a99723
     files:
       - releaseFile: connection-bungeecord.jar
         output: connection-bungeecord.jar
