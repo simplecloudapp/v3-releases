@@ -163,6 +163,14 @@ bundles:
         destination: /components/scripts/components/player.lua
       - source: contents/components/player
         destination: /components/player
+  - name: metrics
+    components:
+      - metrics
+    contents:
+      - source: contents/components/scripts/components/metrics.lua
+        destination: /components/scripts/components/metrics.lua
+      - source: contents/components/metrics
+        destination: /components/metrics
 
 releaseFiles:
   - source: contents/components/envoy/envoy-bootstrap.yaml
