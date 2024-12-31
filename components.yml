@@ -117,10 +117,18 @@ components:
 
   - name: npcs
     githubRepo: https://github.com/theSimpleCloud/npc-plugin
-    version: v0.0.1-dev.898d492
+    version: v0.0.1-dev.daee249
     files:
       - releaseFile: simplecloud-npc.jar
         output: npc-paper.jar
+        destination: templates/sc-plugins/paper
+
+  - name: placeholders
+    githubRepo: https://github.com/theSimpleCloud/placeholder-plugin
+    version: v0.0.1-dev.b3634ce
+    files:
+      - releaseFile: placeholder-plugin.jar
+        output: placeholders-paper.jar
         destination: templates/sc-plugins/paper
 
   - name: command
@@ -152,6 +160,7 @@ bundles:
       - signs
       - npcs
       - command
+      - placeholders
     contents:
       - source: contents
         destination: /
