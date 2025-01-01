@@ -67,7 +67,7 @@ components:
 
   - name: server-registration
     githubRepo: https://github.com/theSimpleCloud/server-registration-plugin
-    version: v0.0.1-dev.c737fbc
+    version: v0.0.1-dev.511eb40
     files:
       - releaseFile: registration-bungeecord.jar
         output: registration-bungeecord.jar
