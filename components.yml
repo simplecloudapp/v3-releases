@@ -45,7 +45,7 @@ components:
 
   - name: metrics
     githubRepo: https://github.com/theSimpleCloud/metrics-droplet
-    version: v0.0.1-dev.dc9e296
+    version: v0.0.1-dev.84dd934
     files:
       - releaseFile: metrics-runtime.jar
         output: metrics-runtime.jar
