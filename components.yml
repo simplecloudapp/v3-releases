@@ -9,7 +9,7 @@ components:
 
   - name: controller
     githubRepo: https://github.com/theSimpleCloud/simplecloud-controller
-    version: v0.0.30-dev.864aa58
+    version: v0.0.30-dev.baf5999
     files:
       - releaseFile: controller-runtime.jar
         output: controller-runtime.jar
@@ -45,7 +45,7 @@ components:
 
   - name: metrics
     githubRepo: https://github.com/theSimpleCloud/metrics-droplet
-    version: v0.0.1-dev.dc9e296
+    version: v0.0.1-dev.84dd934
     files:
       - releaseFile: metrics-runtime.jar
         output: metrics-runtime.jar
