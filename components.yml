@@ -131,6 +131,20 @@ components:
         output: placeholders-paper.jar
         destination: templates/sc-plugins/paper
 
+  - name: notify
+    githubRepo: https://github.com/theSimpleCloud/notify-plugin
+    version: v0.0.1-dev.6794171
+    files:
+      - releaseFile: notify-bungeecord.jar
+        output: notify-bungeecord-plugin.jar
+        destination: templates/sc-plugins/bungeecord
+      - releaseFile: notify-bungeecord.jar
+        output: notify-bungeecord-plugin.jar
+        destination: templates/sc-plugins/waterfall
+      - releaseFile: notify-velocity.jar
+        output: notify-velocity-plugin.jar
+        destination: notify/sc-plugins/velocity
+
   - name: command
     githubRepo: https://github.com/theSimpleCloud/command-plugin
     version: v0.0.1-dev.91cac39
@@ -161,6 +175,7 @@ bundles:
       - npcs
       - command
       - placeholders
+      - notify
     contents:
       - source: contents
         destination: /
