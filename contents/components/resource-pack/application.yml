@@ -1,0 +1,6 @@
+github-repository: theSimpleCloud/v3-releases
+files:
+  - release-file: resource-pack-runtime.jar
+    output-file: ../resource-pack/resource-pack-runtime.jar
+  - release-file: resource-pack-plugin-velocity.jar
+    output-file: ../../templates/droplet-plugins/velocity/resource-pack-plugin-velocity.jar
