@@ -8,7 +8,7 @@ components:
         destination: components/auto-updater/
 
   - name: controller
-    githubRepo: https://github.com/simplecloudapp/simplecloud-controller
+    githubRepo: https://github.com/simplecloudapp/controller
     version: v0.0.30-dev.baf5999
     files:
       - releaseFile: controller-runtime.jar
