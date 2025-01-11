@@ -179,6 +179,22 @@ bundles:
     contents:
       - source: contents
         destination: /
+  - name: controller
+    components:
+      - controller
+    contents:
+      - source: contents/components/scripts/components/controller.lua
+        destination: /components/scripts/components/controller.lua
+      - source: contents/components/controller
+        destination: /components/controller
+  - name: serverhost
+    components:
+      - serverhost
+    contents:
+      - source: contents/components/scripts/components/serverhost.lua
+        destination: /components/scripts/components/serverhost.lua
+      - source: contents/components/serverhost
+        destination: /components/serverhost
   - name: player
     components:
       - player
