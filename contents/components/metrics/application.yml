@@ -1,4 +1,4 @@
-github-repository: simplecloudapp/v3-releases
+group-id: app.simplecloud.droplet.metrics
 files:
-  - release-file: metrics-runtime.jar
+  - artifact: metrics-runtime
     output-file: ../metrics/metrics-runtime.jar

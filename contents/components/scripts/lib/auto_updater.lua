@@ -104,7 +104,7 @@ function M.update_self(root_dir)
     set_updater_lock(auto_updater_dir, true)
 
     local cmd = string.format(
-            "cd %s && java -jar %s/auto-updater.jar --application-config=%s/application.yml --versions-config=%s/versions.yml --current-version-file=%s/current_version.txt --channel=dev --allow-major-updates",
+            "cd %s && java -jar %s/auto-updater.jar --application-config=%s/application.yml --current-version-file=%s/current_version.txt --channel=snapshots",
             auto_updater_dir,
             auto_updater_dir,
             auto_updater_dir,
@@ -150,17 +150,13 @@ function M.update(config)
 
     -- Then update the component
     local cmd = string.format(
-            "cd %s && java -jar %s --application-config=%s --versions-config=%s --current-version-file=%s --channel=dev --allow-major-updates",
+            "cd %s && java -jar %s --application-config=%s --current-version-file=%s --channel=snapshots",
             config.component_dir,
             config.auto_updater_jar,
             config.config_file,
             config.versions_config,
             config.version_file
     )
-
-    if config.github_token then
-        cmd = "SC_GITHUB_TOKEN=" .. config.github_token .. " " .. cmd
-    end
 
     local handle = io.popen(cmd .. " 2>&1")
     if not handle then

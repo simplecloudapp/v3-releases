@@ -1,6 +1,6 @@
-github-repository: simplecloudapp/v3-releases
+group-id: app.simplecloud.controller
 files:
-  - release-file: controller-runtime.jar
-    output-file: ../controller/controller-runtime.jar
-  - release-file: controller-api.jar
+  - artifact: controller-api
     output-file: ../libs/controller-api.jar
+  - artifact: controller-runtime
+    output-file: ../controller/controller-runtime.jar
