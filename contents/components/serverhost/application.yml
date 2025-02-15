@@ -1,4 +1,4 @@
-github-repository: simplecloudapp/v3-releases
+group-id: app.simplecloud.droplet.serverhost
 files:
-  - release-file: serverhost-runtime.jar
+  - artifact: serverhost-runtime
     output-file: ../serverhost/serverhost-runtime.jar

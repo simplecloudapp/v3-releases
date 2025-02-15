@@ -1,10 +1,10 @@
-github-repository: simplecloudapp/v3-releases
+group-id: app.simplecloud.droplet.player
 files:
-  - release-file: player-runtime.jar
+  - artifact: player-runtime
     output-file: ../player/player-runtime.jar
-  - release-file: player-plugin-paper.jar
+  - artifact: player-plugin-paper
     output-file: ../../templates/droplet-plugins/paper/player-plugin-paper.jar
-  - release-file: player-plugin-velocity.jar
+  - artifact: player-plugin-velocity
     output-file: ../../templates/droplet-plugins/velocity/player-plugin-velocity.jar
-  - release-file: player-plugin-bungeecord.jar
+  - artifact: player-plugin-bungeecord
     output-file: ../../templates/droplet-plugins/bungeecord/player-plugin-bungeecord.jar
