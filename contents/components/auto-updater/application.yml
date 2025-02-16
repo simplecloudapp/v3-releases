@@ -1,4 +1,4 @@
-github-repository: simplecloudapp/v3-releases
+group-id: app.simplecloud.auto-updater
 files:
-  - release-file: auto-updater.jar
+  - artifact: auto-updater
     output-file: ../auto-updater/auto-updater.jar

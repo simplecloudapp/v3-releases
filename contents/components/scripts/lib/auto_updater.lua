@@ -108,7 +108,6 @@ function M.update_self(root_dir)
             auto_updater_dir,
             auto_updater_dir,
             auto_updater_dir,
-            auto_updater_dir,
             auto_updater_dir
     )
 
@@ -154,7 +153,6 @@ function M.update(config)
             config.component_dir,
             config.auto_updater_jar,
             config.config_file,
-            config.versions_config,
             config.version_file
     )
 
