@@ -1,4 +1,0 @@
-- channel: "release"
-  release-tag-regex: "v(\\d+)\\.(\\d+)\\.(\\d+)"
-- channel: "dev"
-  release-tag-regex: "v(\\d{4})\\.(\\d{1,2})\\.(\\d+)\\.dev-([a-f0-9]{7})"

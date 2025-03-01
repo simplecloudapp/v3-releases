@@ -3,6 +3,16 @@ local os = require("os")
 
 local M = {}
 
+-- Function to check if updater exists
+local function updater_exists(auto_updater_dir)
+    local file = io.open(auto_updater_dir .. "/auto-updater.jar", "r")
+    if file then
+        file:close()
+        return true
+    end
+    return false
+end
+
 -- Function to check and clean stale lock files
 local function clean_stale_lock(file_path)
     local file = io.open(file_path, "r")
@@ -95,21 +105,45 @@ end
 function M.update_self(root_dir)
     local auto_updater_dir = root_dir .. "/components/auto-updater"
 
+    -- Check if updater exists first
+    if not updater_exists(auto_updater_dir) then
+        return true -- Skip update but don't block component updates
+    end
+
+    local temp_dir = root_dir .. "/components/temp-auto-updater"
+
     -- Check if enough time has passed since last update
     if not can_update(auto_updater_dir) then
-        return true  -- Return true to not block component updates
+        return true -- Return true to not block component updates
+    end
+
+    -- Create temp directory
+    os.execute('rm -rf "' .. temp_dir .. '"') -- Clean if exists
+    local mkdir_result = os.execute('mkdir -p "' .. temp_dir .. '"')
+    if not mkdir_result then
+        print("Failed to create temp directory: " .. temp_dir)
+        return false
+    end
+
+    -- Copy jar to temp directory
+    local copy_result = os.execute(string.format('cp "%s/auto-updater.jar" "%s/"',
+        auto_updater_dir,
+        temp_dir))
+    if not copy_result then
+        print("Failed to copy auto-updater.jar to temp directory")
+        os.execute('rm -rf "' .. temp_dir .. '"')
+        return false
     end
 
     -- Set update lock
     set_updater_lock(auto_updater_dir, true)
 
+    -- Run from temp directory but use original config location
     local cmd = string.format(
-            "cd %s && java -jar %s/auto-updater.jar --application-config=%s/application.yml --current-version-file=%s/current_version.txt --channel=snapshots",
-            auto_updater_dir,
-            auto_updater_dir,
-            auto_updater_dir,
-            auto_updater_dir,
-            auto_updater_dir
+        'cd "%s" && java -jar auto-updater.jar --application-config="%s/application.yml" --current-version-file="%s/current_version.txt" --channel=snapshots',
+        temp_dir,
+        auto_updater_dir,
+        auto_updater_dir
     )
 
     if os.getenv("SC_GITHUB_TOKEN") then
@@ -119,13 +153,28 @@ function M.update_self(root_dir)
     local handle = io.popen(cmd .. " 2>&1")
     if not handle then
         set_updater_lock(auto_updater_dir, false)
+        os.execute('rm -rf "' .. temp_dir .. '"')
         return false
     end
 
     local output = handle:read("*a")
     local success = handle:close()
 
-    -- Remove update lock
+    -- If update was successful, copy everything back
+    if success then
+        local copy_back_result = os.execute(string.format('cp "%s/auto-updater.jar" "%s/"',
+            temp_dir,
+            auto_updater_dir))
+        if not copy_back_result then
+            print("Failed to copy auto-updater.jar back from temp directory")
+            success = false
+        end
+    end
+
+    -- Change directory to parent before cleanup
+    os.execute('cd "' .. auto_updater_dir .. '"')
+    os.execute('rm -rf "' .. temp_dir .. '"')
+
     set_updater_lock(auto_updater_dir, false)
 
     return success ~= nil
@@ -133,29 +182,36 @@ end
 
 function M.update(config)
     local auto_updater_dir = ROOT_DIR .. "/components/auto-updater"
+
+    -- Check if updater exists first
+    if not updater_exists(auto_updater_dir) then
+        return true -- Skip update but don't block component updates
+    end
+
     local initial_sleep = 1
     local attempt = 0
 
-    -- Wait for any ongoing updater updates to complete
     while is_updater_updating(auto_updater_dir) do
         local sleep_time = initial_sleep * (attempt + 1)
         os.execute("sleep " .. sleep_time)
         attempt = attempt + 1
     end
 
-    -- First update the auto-updater itself
     if not M.update_self(ROOT_DIR) then
         return false
     end
 
-    -- Then update the component
+    -- Check again before running the component update
+    if not updater_exists(auto_updater_dir) then
+        return true
+    end
+
     local cmd = string.format(
-            "cd %s && java -jar %s --application-config=%s --current-version-file=%s --channel=snapshots",
-            config.component_dir,
-            config.auto_updater_jar,
-            config.config_file,
-            config.versions_config,
-            config.version_file
+        "cd %s && java -jar %s --application-config=%s --current-version-file=%s --channel=snapshots",
+        config.component_dir,
+        config.auto_updater_jar,
+        config.config_file,
+        config.version_file
     )
 
     local handle = io.popen(cmd .. " 2>&1")
