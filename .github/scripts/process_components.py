@@ -166,7 +166,7 @@ def process_components():
 
         # Setup GitHub API headers
         headers = {
-            'Authorization': f"token {os.environ['GITHUB_TOKEN']}",
+            # 'Authorization': f"token {os.environ['GITHUB_TOKEN']}",
             'Accept': 'application/vnd.github.v3+json'
         }
 
