@@ -1,22 +1,8 @@
-components:
-  - name: player
-    githubRepo: https://github.com/simplecloudapp/player-droplet
-    version: snapshot
-    files:
-      - releaseFile: plugin-paper.jar
-        output: player-plugin-paper.jar
-        destination: templates/droplet-plugins/paper
-      - releaseFile: plugin-velocity.jar
-        output: player-plugin-velocity.jar
-        destination: templates/droplet-plugins/velocity
-      - releaseFile: plugin-bungeecord.jar
-        output: player-plugin-bungeecord.jar
-        destination: templates/droplet-plugins/bungeecord
+components: []
 
 bundles:
   - name: bundle
-    components:
-      - player
+    components: []
     contents:
       - source: contents
         destination: /
