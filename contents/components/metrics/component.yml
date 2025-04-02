@@ -1,0 +1,29 @@
+name: metrics
+
+regular:
+  session: simplecloud-metrics
+  jar: metrics-runtime.jar
+  auto_update: true
+  java_opts:
+    - "-Xmx512m"
+    - "-Xms256m"
+    - "-XX:+UseG1GC"
+    - "-XX:MaxGCPauseMillis=50"
+    - "-XX:CompileThreshold=100"
+    - "-XX:+UnlockExperimentalVMOptions"
+    - "-XX:+UseCompressedOops"
+
+docker:
+  enabled: false
+  compose:
+    version: "3.8"
+    services:
+      metrics:
+        image: simplecloud/metrics:latest
+        ports:
+          - "9090:9090"
+        volumes:
+          - ./application.yml:/app/application.yml
+          - ./current_version.txt:/app/current_version.txt
+        environment:
+          - JAVA_OPTS=-Xmx512m -Xms256m

@@ -1,7 +1,0 @@
-local component = require("component")
-
-return component.create({
-    name = "envoy",
-    session = "simplecloud-envoy",
-    command = "docker compose up --build"
-})

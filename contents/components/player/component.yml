@@ -1,0 +1,14 @@
+name: player
+
+regular:
+  session: simplecloud-player
+  jar: player-runtime.jar
+  auto_update: true
+  java_opts:
+    - "-Xmx512m"
+    - "-Xms256m"
+    - "-XX:+UseG1GC"
+    - "-XX:MaxGCPauseMillis=50"
+    - "-XX:CompileThreshold=100"
+    - "-XX:+UnlockExperimentalVMOptions"
+    - "-XX:+UseCompressedOops"
