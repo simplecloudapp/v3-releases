@@ -1,0 +1,4 @@
+github-repository: simplecloudapp/v3-releases
+files:
+  - release-file: envoy-bootstrap.yaml
+    output-file: ../envoy/envoy-bootstrap.yaml
