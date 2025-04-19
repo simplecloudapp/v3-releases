@@ -1,0 +1,14 @@
+name: controller
+
+regular:
+  session: simplecloud-controller
+  auto_update: true
+  jar: controller-runtime.jar
+  java_opts:
+    - "-Xmx512m"
+    - "-Xms256m"
+    - "-XX:+UseG1GC"
+    - "-XX:MaxGCPauseMillis=50"
+    - "-XX:CompileThreshold=100"
+    - "-XX:+UnlockExperimentalVMOptions"
+    - "-XX:+UseCompressedOops"

@@ -1,0 +1,21 @@
+name: envoy
+
+regular:
+  session: simplecloud-envoy
+  auto_update: true
+  command: envoy -c envoy-bootstrap.yaml
+
+docker:
+  enabled: false
+  compose:
+    version: "3.8"
+    services:
+      envoy:
+        image: envoyproxy/envoy:v1.28-latest
+        ports:
+          - "9901:9901"
+          - "10000:10000"
+        volumes:
+          - ./envoy-bootstrap.yaml:/etc/envoy/envoy-bootstrap.yaml
+        environment:
+          - ENVOY_UID=0

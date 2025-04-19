@@ -2,9 +2,9 @@ group-id: app.simplecloud.droplet.player
 files:
   - artifact: player-runtime
     output-file: ../player/player-runtime.jar
-  - artifact: player-plugin-paper
+  - artifact: plugin-paper
     output-file: ../../templates/droplet-plugins/paper/player-plugin-paper.jar
-  - artifact: player-plugin-velocity
+  - artifact: plugin-velocity
     output-file: ../../templates/droplet-plugins/velocity/player-plugin-velocity.jar
-  - artifact: player-plugin-bungeecord
+  - artifact: plugin-bungeecord
     output-file: ../../templates/droplet-plugins/bungeecord/player-plugin-bungeecord.jar
